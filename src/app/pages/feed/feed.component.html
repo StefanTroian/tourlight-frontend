@@ -1,0 +1,29 @@
+<p>{{ message }}</p>
+
+<div class="container">
+  <div>
+    <img
+      class="align-self-start mr-5 img-thumbnail rounded-circle"
+      src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+      alt="{{ user.displayName }}"
+    />
+    <div>
+      <h1>
+        {{ user.displayName ? user.displayName : "User" }}
+      </h1>
+      <p>
+        User ID: {{ user.uid }}
+      </p>
+      <p>
+        Email: {{ user.email }}
+      </p>
+    </div>
+  </div>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="logout()"
+  >
+    <i class="fas fa-sign-out-alt"></i>Log out
+  </button>
+</div>

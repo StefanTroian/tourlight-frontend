@@ -1,0 +1,47 @@
+<div class="container">
+  <h3>Register</h3>
+  <div>
+    <input
+      type="email"
+      class="formControl"
+      placeholder="Email Address"
+      #userEmail
+      required
+    />
+  </div>
+  <div>
+    <input
+      type="password"
+      class="formControl"
+      placeholder="Password"
+      #userPassword
+      required
+    />
+  </div>
+  <div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="register()"
+    >
+      Register
+    </button>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="googleAuth()"
+    >
+      <i class="fab fa-google-plus-g"></i>
+      Continue with Google
+    </button>
+  </div>
+  <div>
+    <span
+      >Already have an account?
+      <a (click)="goToLogin()">Log In</a></span
+    >
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../userInterface/user';
+import { UserService } from '../userService/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone,
-    public toaster: ToastrService
+    public toaster: ToastrService,
+    public userService: UserService
   ) { 
     // Saving user data in localstorage and remove on logged out
     this.afAuth.authState.subscribe((user) => {
@@ -49,8 +51,19 @@ export class AuthService {
   register(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        this.sendVerificationMail();
+        // this.sendVerificationMail();
         this.setUserData(res.user);
+        this.router.navigate(['feed']);
+        this.userService.createUser(res.user).subscribe({
+          next: (response: any) => {
+            if (response) {
+              this.toaster.success(response.message);
+            }
+          },
+          error: (err) => {
+            this.toaster.error(err.message);
+          }
+        });
       })
       .catch((err) => {
         this.toaster.error(err.message)
@@ -100,6 +113,13 @@ export class AuthService {
           })
         });
         this.setUserData(res.user);
+        this.userService.createUser(res.user).subscribe({
+          next: (response: any) => {
+          },
+          error: (err) => {
+            this.toaster.error(err.message)
+          }
+        });
       })
       .catch((err) => {
         this.toaster.error(err.message)

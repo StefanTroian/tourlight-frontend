@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  @ViewChild('userName') userName!: ElementRef;
+  @ViewChild('userEmail') userEmail!: ElementRef;
   @ViewChild('userPassword') userPassword!: ElementRef;
   
   constructor(
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.userName.nativeElement.value, this.userPassword.nativeElement.value)
+    this.authService.register(this.userEmail.nativeElement.value, this.userPassword.nativeElement.value)
   }
 
   googleAuth() {

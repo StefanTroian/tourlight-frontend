@@ -12,7 +12,7 @@ import { User } from 'src/app/services/userInterface/user';
 })
 export class FeedComponent implements OnInit {
 
-  message!: string;
+  message!: [];
   user!: User;
 
   constructor(
@@ -29,9 +29,9 @@ export class FeedComponent implements OnInit {
   getFeed() {
     this.feedService.getFeed().subscribe({
       next: (response: any) => {
-        this.message = response.message;
+        this.message = response;
       },
-      error: (err) => {
+      error: (err: any) => {
         this.toaster.error(err.message)
       }
     });

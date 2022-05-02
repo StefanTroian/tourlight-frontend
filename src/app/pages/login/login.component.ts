@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 export class LoginComponent implements OnInit {
 
 
-  @ViewChild('userName') userName!: ElementRef;
+  @ViewChild('userEmail') userEmail!: ElementRef;
   @ViewChild('userPassword') userPassword!: ElementRef;
 
   constructor(
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.userName.nativeElement.value, this.userPassword.nativeElement.value)
+    this.authService.login(this.userEmail.nativeElement.value, this.userPassword.nativeElement.value)
   }
 
   googleAuth() {

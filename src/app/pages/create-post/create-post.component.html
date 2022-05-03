@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<div class="container border position-relative" style="height: 90vh">
+  <div class="row">
+    <div *ngFor="let location of locations" class="p-0">
+      {{ location.location_name }}
+    </div>
+    <div>
+      <button
+      type="button"
+      class="btn border"
+      data-bs-toggle="modal"
+      data-bs-target="#addPostModal"
+    >
+      <i class="fas fa-plus m-0"></i>
+    </button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="addPostModal"
+    tabindex="-1"
+    aria-labelledby="postModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Location</h5>
+          <button
+            #closeModal
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="resetForm()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <input
+              type="text"
+              class="formControl"
+              placeholder="maps coords"
+              #maps
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              class="formControl"
+              placeholder="location name"
+              #locationName
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-primary w-100"    
+            (click)="addLocation()"
+          >
+            Add Location
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row position-absolute bottom-0 start-50 translate-middle-x w-100 m-0">
+      <button type="button" class="btn btn-primary" (click)="addPost()">Create</button>
+  </div>
+</div>

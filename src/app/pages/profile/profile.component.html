@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container border position-relative" style="height: 90vh">
+    <div class="row">
+        <div class="col-4 border">
+            <img
+              id="image-thumbnail profile-image"
+              class="rounded-circle"
+              src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+              alt="{{ user.displayName }}"
+            />
+            <div>
+              <h1>
+                {{ user.displayName ? user.displayName : "User" }}
+              </h1>
+              <p>User ID: {{ user.uid }}</p>
+              <p>Email: {{ user.email }}</p>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="logout()">
+              Log out <i class="fas fa-sign-out-alt m-0"></i>
+            </button>
+        </div>
+        <div class="col-8 border">
+            Posts
+        </div>
+    </div>
+</div>

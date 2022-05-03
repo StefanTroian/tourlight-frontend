@@ -1,30 +1,7 @@
-<div class="container">
-  <div>
-    <img
-      class="align-self-start mr-5 img-thumbnail rounded-circle"
-      src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
-      alt="{{ user.displayName }}"
-    />
-    <div>
-      <h1>
-        {{ user.displayName ? user.displayName : "User" }}
-      </h1>
-      <p>
-        User ID: {{ user.uid }}
-      </p>
-      <p>
-        Email: {{ user.email }}
-      </p>
-    </div>
-  </div>
-  <button
-    type="button"
-    class="btn btn-danger"
-    (click)="logout()"
+<app-navbar></app-navbar>
+<div *ngFor="let post of posts" class="border">
+  <app-post 
+    [post]="post"
   >
-    <i class="fas fa-sign-out-alt"></i>Log out
-  </button>
-  <div *ngFor="let post of message">
-    {{ post.username }} {{ post.uid }} {{ post.locations }} <br>
-  </div>
+  </app-post>
 </div>

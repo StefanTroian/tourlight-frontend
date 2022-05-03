@@ -1,0 +1,43 @@
+<div class="container border">
+  <div class="row mt-4 mb-4">
+    <div class="col-3 border position-relative">
+      <div class="position-absolute top-50 start-0 translate-middle-y">tourlight</div>
+    </div>
+    <div class="col-9 position-relative">
+      <div class="position-absolute top-50 end-0 translate-middle-y">
+        <button type="button" class="btn p-2" (click)="goToFeed()">
+          <i class="fas fa-home m-0"></i>
+        </button>
+        <button type="button" class="btn p-2" (click)="goToCreatePost()">
+          <i class="fas fa-plus m-0"></i>
+        </button>
+        <button type="button" class="btn p-2">
+          <i class="fa fa-sort m-0"></i>
+        </button>
+  
+        <img
+          id="profile-image"
+          class="m-0"
+          src="{{ user.photoURL ? user.photoURL : '/assets/dummy-user.png' }}"
+          alt="{{ user.displayName }}"
+          (click)="goToProfile()"
+        />
+      </div>
+      <!-- <div>
+        <div>
+          <h1>
+            {{ user.displayName ? user.displayName : "User" }}
+          </h1>
+          <p>User ID: {{ user.uid }}</p>
+          <p>Email: {{ user.email }}</p>
+        </div>
+      </div>
+    
+      <button type="button" class="btn btn-danger" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>Log out
+      </button> -->
+    </div>
+  </div>
+
+
+</div>

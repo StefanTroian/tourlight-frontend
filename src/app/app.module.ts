@@ -15,6 +15,7 @@ import { AuthService } from './services/authService/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PagesModule } from './pages/pages.module';
     AngularFireDatabaseModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    PagesModule
+    PagesModule,
+    GooglePlaceModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

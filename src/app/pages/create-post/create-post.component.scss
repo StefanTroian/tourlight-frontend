@@ -1,0 +1,28 @@
+#addPostModal,
+.modal-dialog {
+  z-index: 2 !important;
+}
+
+::ng-deep .pac-container {
+  z-index: 3 !important;
+}
+
+::ng-deep .modal-backdrop {
+  z-index: 1 !important;
+}
+
+#ceva {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::ng-deep .modal-body .map-container {
+  width: 100% !important;
+  height: 50vh !important;
+  border-radius: 0.5rem;
+  align-self: center;
+}

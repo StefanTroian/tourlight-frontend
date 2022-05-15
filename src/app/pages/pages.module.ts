@@ -6,6 +6,8 @@ import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './profile/profile.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -19,7 +21,9 @@ import { CreatePostComponent } from './create-post/create-post.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    GooglePlaceModule,
+    GoogleMapsModule
   ]
 })
 export class PagesModule { }

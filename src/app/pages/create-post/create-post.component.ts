@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap } from '@angular/google-maps';
 import { Router } from '@angular/router';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { FeedService } from 'src/app/services/feedService/feed.service';
 import { Post } from 'src/app/services/postInterface/post';
@@ -12,10 +15,33 @@ import { Post } from 'src/app/services/postInterface/post';
 export class CreatePostComponent implements OnInit {
 
   locations: {}[] = [];
+  location: {} = {};
   post: Post;
-  @ViewChild('maps') maps!: ElementRef;
-  @ViewChild('locationName') locationName!: ElementRef;
+  zoom = 14;
+  longitude = '';
+  latitude = '';
+  marker = { position: {}}
+
+  @ViewChild('mapInput') mapInput!: ElementRef;
   @ViewChild('closeModal') closeModal: ElementRef;
+  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  @ViewChild(GoogleMap) map!: GoogleMap;
+
+  options = {
+    types: [],
+    componentRestrictions: { country: 'RO' }
+  }
+
+  mapOptions: google.maps.MapOptions = {
+    mapTypeControl: false, 
+    streetViewControl: false,
+    fullscreenControl: false,
+    zoom: this.zoom,
+    center: { 
+      lat: 44.4267674,
+      lng: 26.1025384
+    } // Bucharest
+ }
 
   constructor(
     public feedService: FeedService,
@@ -31,15 +57,8 @@ export class CreatePostComponent implements OnInit {
   }
 
   addLocation() {
-    if (this.maps.nativeElement.value && this.locationName.nativeElement.value) {
-      this.locations.push(
-        {
-          "id": "id locatie 1",
-          "maps": this.maps.nativeElement.value,
-          "location_name": this.locationName.nativeElement.value,
-          "order_number": "order"
-        }
-      )
+    if (this.mapInput.nativeElement.value) {
+      this.locations.push(this.location)
       this.closeModal.nativeElement.click();
       this.resetForm();
     } else {
@@ -77,10 +96,37 @@ export class CreatePostComponent implements OnInit {
       this.toaster.error(`Please add a location`)
     }
   }
+
+  public handleAddressChange(address: Address) {
+    console.log(address)
+
+    this.location = {
+      'location_name': address.name,
+      'address': address.vicinity,
+      'rating': address.rating ? address.rating : 0,
+      'website': address.website ? address.website : '',
+      'lat': address.geometry.location.lat(),
+      'lng': address.geometry.location.lng()
+    }
+
+    this.marker = {
+      position: {
+        lat: address.geometry.location.lat(),
+        lng: address.geometry.location.lng()
+      }
+    }
+
+    this.map.panTo(
+      new google.maps.LatLng(address.geometry.location.lat(),address.geometry.location.lng())
+    )
+  }
   
   resetForm() {
-    this.maps.nativeElement.value = "";
-    this.locationName.nativeElement.value = "";
+    this.mapInput.nativeElement.value = "";
+    this.marker = { position: {}};
+    this.map.panTo(
+      new google.maps.LatLng(this.mapOptions.center)
+    )
   }
 
   resetPost() {

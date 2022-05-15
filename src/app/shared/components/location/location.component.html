@@ -1,0 +1,14 @@
+<div class="p-2" style="border-radius: 1rem; box-shadow:  10px 10px 20px #bebebe,
+-10px -10px 20px #ffffff;">
+  <p>
+    {{ location.location_name }}
+    <a *ngIf="location.website" href="{{ location.website }}">
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+  </p>
+  <div>
+    <google-map [width]="null" [height]="null" [options]="mapOptions">
+      <map-marker [position]="marker.position"> </map-marker>
+    </google-map>
+  </div>
+</div>

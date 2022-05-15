@@ -1,20 +1,22 @@
 <app-navbar></app-navbar>
-<div class="container border position-relative" style="height: 90vh">
-  <div class="row">
-    <div *ngFor="let location of locations" class="p-0">
-      {{ location.location_name }}
+<div id="ceva" class="container position-relative p-3 gap-3" style="height: 85vh; overflow: scroll;">
+    <div *ngFor="let location of locations" style="float: left;">
+      <app-location 
+        [location]="location"
+      >
+      </app-location>
     </div>
-    <div>
+    <div class="position-relative">
       <button
-      type="button"
-      class="btn border"
-      data-bs-toggle="modal"
-      data-bs-target="#addPostModal"
-    >
-      <i class="fas fa-plus m-0"></i>
-    </button>
+        type="button"
+        class="btn border position-absolute top-50 start-50 translate-middle"
+        data-bs-toggle="modal"
+        data-bs-target="#addPostModal"
+      >
+        <i class="fas fa-plus m-0"></i>
+      </button>
     </div>
-  </div>
+      
 
   <!-- Modal -->
   <div
@@ -38,29 +40,30 @@
           ></button>
         </div>
         <div class="modal-body">
-          <div>
+          <div style="z-index: 1;">
             <input
-              type="text"
+              #mapInput
+              ngx-google-places-autocomplete
               class="formControl"
-              placeholder="maps coords"
-              #maps
-              required
+              [options]="options"
+              #placesRef="ngx-places"
+              style="position: relative;"
+              (onAddressChange)="handleAddressChange($event)"
             />
-          </div>
-          <div>
-            <input
-              type="text"
-              class="formControl"
-              placeholder="location name"
-              #locationName
-              required
-            />
+            <div class="mt-2"> 
+              <google-map
+                [options]="mapOptions"
+              >
+                <map-marker [position]="marker.position">
+                </map-marker>
+              </google-map>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-primary w-100"    
+            class="btn btn-primary w-100"
             (click)="addLocation()"
           >
             Add Location
@@ -70,7 +73,11 @@
     </div>
   </div>
 
-  <div class="row position-absolute bottom-0 start-50 translate-middle-x w-100 m-0">
-      <button type="button" class="btn btn-primary" (click)="addPost()">Create</button>
-  </div>
+</div>
+<div
+  class="row justify-content-center ps-2 pe-2"
+>
+  <button type="button" class="btn btn-primary" (click)="addPost()">
+    Create
+  </button>
 </div>

@@ -1,4 +1,4 @@
-<div class="p-2" style="border-radius: 1rem; box-shadow:  10px 10px 20px #bebebe,
+<!-- <div class="p-2" style="border-radius: 1rem; box-shadow:  10px 10px 20px #bebebe,
 -10px -10px 20px #ffffff;">
   <p>
     {{ location.location_name }}
@@ -11,4 +11,33 @@
       <map-marker [position]="marker.position"> </map-marker>
     </google-map>
   </div>
-</div>
+</div> -->
+
+<p-card header="{{ location.location_name }}" styleClass="p-card-shadow">
+  <ng-template pTemplate="header">
+    <google-map [width]="null" [height]="null" [options]="mapOptions">
+      <map-marker [position]="marker.position"> </map-marker>
+    </google-map>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <span *ngIf="location.rating">
+      <p-rating [ngModel]="floorRating" readonly="true" stars="5" [cancel]="false"></p-rating>
+      <span id="ratingNumber" class="ms-3">{{ location.rating }}</span>
+    </span>
+    <span *ngIf="!location.rating">
+      <span>No rating.</span>
+    </span>
+  </ng-template>
+  
+  <ng-template pTemplate="footer">
+    <p-accordion *ngIf="location.bestReviewUsername">
+      <p-accordionTab header="Best review - {{ location.bestReviewUsername }}">
+         {{ location.bestReviewText }}
+      </p-accordionTab>
+    </p-accordion>
+    <span *ngIf="!location.bestReviewUsername">
+      No reviews.
+    </span>
+  </ng-template>
+</p-card>

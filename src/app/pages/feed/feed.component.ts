@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FeedService } from 'src/app/services/feedService/feed.service';
 
@@ -7,7 +7,7 @@ import { FeedService } from 'src/app/services/feedService/feed.service';
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, AfterViewInit {
 
   posts!: [];
 
@@ -18,6 +18,10 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFeed();
+  }
+
+  ngAfterViewInit() {
+    // console.log('after view init')
   }
 
   getFeed() {

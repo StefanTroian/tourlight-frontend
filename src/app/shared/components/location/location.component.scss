@@ -3,3 +3,26 @@
     height: 30vh;
     border-radius: 0.5rem;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+::ng-deep .p-card {
+    border-radius: 1rem; box-shadow:  10px 10px 20px #bebebe,-10px -10px 20px #ffffff;
+    width: 100% !important;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+
+::ng-deep .p-card .p-card-header .p-card-footer, ::ng-deep .p-accordion {
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+
+::ng-deep .p-rating, #ratingNumber {
+    width: fit-content;
+    float: left;
+}
+
+::ng-deep .p-rating>* {
+    color: #21252f !important;
+}

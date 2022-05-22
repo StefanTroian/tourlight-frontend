@@ -5,6 +5,10 @@ import { PostComponent } from './components/post/post.component';
 import { CarouselModule } from 'primeng/carousel';
 import { LocationComponent } from './components/location/location.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { CardModule } from 'primeng/card';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [NavbarComponent, PostComponent, LocationComponent],
@@ -12,7 +16,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
   imports: [
     CommonModule,
     CarouselModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    CardModule,
+    RatingModule,
+    FormsModule,
+    AccordionModule
   ],
 })
 export class SharedModule {

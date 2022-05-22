@@ -99,7 +99,7 @@ export class CreatePostComponent implements OnInit {
 
   public handleAddressChange(address: Address) {
     console.log(address)
-
+    
     this.location = {
       'location_name': address.name,
       'address': address.vicinity,
@@ -107,6 +107,16 @@ export class CreatePostComponent implements OnInit {
       'website': address.website ? address.website : '',
       'lat': address.geometry.location.lat(),
       'lng': address.geometry.location.lng()
+    }
+    
+    if (address.reviews) {
+      let review = address.reviews.sort((a,b) => {
+        return b['rating'] - a['rating']
+      })[0]
+      if (review) {
+        this.location['bestReviewUsername'] = review.author_name
+        this.location['bestReviewText'] = review.text
+      }
     }
 
     this.marker = {

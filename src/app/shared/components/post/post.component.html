@@ -1,11 +1,18 @@
 <div class="container p-3 mt-3 mb-3" style="border-radius: 1rem; box-shadow:  10px 10px 20px #bebebe,
 -10px -10px 20px #ffffff;">
   <div class="row ps-2 pe-2">
-    <h6>{{ post.username }}</h6>
+    <div class="col-12">
+      <img
+        id="profile-image"
+        class="rounded-circle"
+        src="{{ post.userphoto ? post.userphoto : '/assets/dummy-user.png' }}"
+      />
+      <span id="postUsername">{{ post.username }}</span>
+    </div>
   </div>
   <p-carousel
     [value]="post.locations"
-    [numVisible]="3"
+    [numVisible]="2"
     [numScroll]="3"
     [circular]="true"
     class="carousel"
@@ -20,17 +27,21 @@
     </ng-template>
   </p-carousel>
   <div class="row ps-2 pe-2">
+    <div class="col-12">
+      <span>
+        Tour duration: 1 - 2 days
+      </span>
+    </div>
+  </div>
+  <div class="row ps-2 pe-2">
     <div class="col-6">
-      <img
-        id="profile-image"
-        class="rounded-circle"
-        src="{{ post.userphoto ? post.userphoto : '/assets/dummy-user.png' }}"
-      />
-      <span class="ms-3">{{ post.dateCreated | date: "medium" }}</span>
+      <span>
+        Likes {{ post.likes.length }}
+      </span>
     </div>
     <div class="col-6 position-relative">
       <div class="position-absolute top-50 end-0 translate-middle-y me-2">
-        Likes {{ post.likes.length }}
+        <span class="ms-3">{{ post.dateCreated | date: "short" }}</span>
       </div>
     </div>
   </div>

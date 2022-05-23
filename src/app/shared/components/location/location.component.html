@@ -19,7 +19,6 @@
       <map-marker [position]="marker.position"> </map-marker>
     </google-map>
   </ng-template>
-
   <ng-template pTemplate="content">
     <span *ngIf="location.rating">
       <p-rating [ngModel]="floorRating" readonly="true" stars="5" [cancel]="false"></p-rating>

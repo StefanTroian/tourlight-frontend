@@ -9,7 +9,8 @@ import { InfiniteScrollService } from 'src/app/services/infiniteScrollingService
   styleUrls: ['./feed.component.scss']
 })
 export class FeedComponent implements OnInit, AfterViewInit {
-
+  
+  loading = true;
   posts:any [] = [];
   endLimit: number = 3;
   maxLimit: number;
@@ -27,10 +28,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
       next: (response: any) => {
         if (response) {
           this.maxLimit = response;
-          console.log(response);
-          // this.maxLimit = this.maxLimit * 2;
-    
           this.getFeed(this.endLimit);
+          this.loading = false;
         }       
       },
       error: (err: any) => {
@@ -42,7 +41,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
       if (status) {
         if (this.endLimit < this.maxLimit) {
           this.endLimit = this.endLimit + 3;
-          console.log('limit ', this.endLimit)
+          this.loading = true;
           this.getFeed(this.endLimit);
         }
       }
@@ -50,14 +49,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // console.log('after view init')
   }
 
   getFeed(endLimit: number) {
 
-    console.log(endLimit)
-
-    // if (endLimit <= this.maxLimit)
     this.feedService.getFeed(endLimit).subscribe({
       next: (response: any) => {
         if (response) {
@@ -72,7 +67,9 @@ export class FeedComponent implements OnInit, AfterViewInit {
             clearInterval(clear);
             this.infiniteScroll.setObserver().observe(target);
           }
-        }, 0)        
+        }, 0)  
+        
+        this.loading = false;
       },
       error: (err: any) => {
         this.toaster.error(err.message)

@@ -9,10 +9,21 @@ import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
+import { LoadingDirective } from './directives/loading.directive';
 
 @NgModule({
-  declarations: [NavbarComponent, PostComponent, LocationComponent],
-  exports: [NavbarComponent, PostComponent, LocationComponent],
+  declarations: [
+    NavbarComponent,
+    PostComponent,
+    LocationComponent,
+    LoadingDirective,
+  ],
+  exports: [
+    NavbarComponent,
+    PostComponent,
+    LocationComponent,
+    LoadingDirective,
+  ],
   imports: [
     CommonModule,
     CarouselModule,
@@ -20,7 +31,7 @@ import { AccordionModule } from 'primeng/accordion';
     CardModule,
     RatingModule,
     FormsModule,
-    AccordionModule
+    AccordionModule,
   ],
 })
 export class SharedModule {

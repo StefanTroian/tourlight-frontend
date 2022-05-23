@@ -6,6 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
+  
+  loading = true;
 
   @Input() post;
 
@@ -13,6 +15,12 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.post.dateCreated = new Date(this.post.dateCreated);
+  }
+
+  getLoaded(event: any) {
+    if (event) {
+      this.loading = false;
+    }
   }
 
 }

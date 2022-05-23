@@ -16,11 +16,13 @@
     [numScroll]="3"
     [circular]="true"
     class="carousel"
+    [loading]="loading"
   >
     <ng-template let-location pTemplate="item">
       <div class="p-4">
         <app-location
           [location]="location"
+          (loaded)="getLoaded($event)"
         >
         </app-location>
       </div>

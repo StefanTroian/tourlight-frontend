@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
@@ -9,9 +9,11 @@ import { AccordionModule } from 'primeng/accordion';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss']
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent implements OnInit, AfterViewInit{
 
   @Input() location;
+  @Output() loaded = new EventEmitter();
+
   marker = { position: {}}
   floorRating;
 
@@ -293,6 +295,14 @@ export class LocationComponent implements OnInit {
         lng: this.location.lng
       }
     }
+  }
+    
+  ngAfterViewInit(): void { 
+    this.map.googleMap.addListener('tilesloaded', this.addNewItem.bind(this));
+  }
+  
+  addNewItem() {
+    this.loaded.emit(1);
   }
 
 }

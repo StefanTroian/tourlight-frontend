@@ -9,9 +9,20 @@ export class FeedService {
 
   constructor(private http: HttpClient) { }
 
-  getFeed(): Observable<any> {
+  // getFeed(): Observable<any> {
+  //   // TODO
+  //   //return this.http.get(`https://tourlight-backend.herokuapp.com/api/tourlight/database`);
+  //   return this.http.get(`http://localhost:8081/api/tourlight/posts`);
+  // }
+
+
+  getFeed(endLimit: number): Observable<any> {
     // TODO
     //return this.http.get(`https://tourlight-backend.herokuapp.com/api/tourlight/database`);
+    return this.http.get(`http://localhost:8081/api/tourlight/posts/${endLimit}`).pipe(map(res => res));
+  }
+
+  getFeedLength(): Observable<any> {
     return this.http.get(`http://localhost:8081/api/tourlight/posts`);
   }
 

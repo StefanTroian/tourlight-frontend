@@ -4,4 +4,6 @@ export interface Post {
   useruid: string;
   likes: [];
   locations: {}[];
+  minimumDays?: number,
+  maximumDays?: number
 }

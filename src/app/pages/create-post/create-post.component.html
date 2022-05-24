@@ -1,24 +1,14 @@
 <app-navbar></app-navbar>
-<div id="ceva" class="container position-relative p-3 gap-4" style="height: 85vh; overflow: scroll;">
+<div id="ceva" [loading]="loading" class="container position-relative p-3 gap-4" style="height: 85vh; overflow: scroll;">
     <div *ngFor="let location of locations" style="float: left;">
       <app-location 
         [location]="location"
+        (loaded)="getLoaded($event)"
       >
       </app-location>
     </div>
-    <div class="position-relative">
-      <button
-        type="button"
-        class="btn border position-absolute top-50 start-50 translate-middle"
-        data-bs-toggle="modal"
-        data-bs-target="#addPostModal"
-      >
-        <i class="fas fa-plus m-0"></i>
-      </button>
-    </div>
       
-
-  <!-- Modal -->
+  <!-- Modal add location -->
   <div
     class="modal fade"
     id="addPostModal"
@@ -63,21 +53,103 @@
         <div class="modal-footer">
           <button
             type="button"
-            class="btn btn-primary w-100"
+            class="btn btn-dark w-100"
             (click)="addLocation()"
           >
-            Add Location
+            Add location
           </button>
         </div>
       </div>
     </div>
   </div>
 
+
+  <!-- Modal add days duration -->
+  <div
+    class="modal fade"
+    id="addDaysPostModal"
+    tabindex="-1"
+    aria-labelledby="postModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="postModalLabel">Tour duration</h5>
+          <button
+            #closeModal
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="resetDays()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div style="z-index: 1;" class="row align-items-center">
+            <div class="col-4">
+              <input
+                #minimumDays
+                class="formControl"
+                placeholder="minimum days"
+              />
+            </div>
+            <div class="col-1">
+              <span>-</span>
+            </div>
+            <div class="col-4">
+              <input
+                #maximumDays
+                class="formControl"
+                placeholder="maximum days"
+              />
+            </div>
+            <div class="col-3">
+              days
+            </div>
+          </div>
+          <div class="row mb-0 mt-3">
+            <p style="font-size: 14px;" class="mb-0">*Minimum and maximum days should be numbers between 1 and 10.</p>
+            <p style="font-size: 14px;" class="mb-0">*Minimum days should be lower than maximum days.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-dark w-100"
+            (click)="addPost()"
+          >
+            Create post
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 <div
   class="row justify-content-center ps-2 pe-2"
 >
-  <button type="button" class="btn btn-primary" (click)="addPost()">
+  <div class="col-6">
+    <button
+        type="button"
+        class="btn btn-dark w-100"
+        data-bs-toggle="modal"
+        data-bs-target="#addPostModal"
+      >
+        Add location
+      </button>
+  </div>
+  <div class="col-6">
+    <button 
+    type="button" 
+    class="btn btn-dark w-100"
+    data-bs-toggle="modal"
+    data-bs-target="#addDaysPostModal"
+  >
     Create
   </button>
+  </div>
+  
 </div>

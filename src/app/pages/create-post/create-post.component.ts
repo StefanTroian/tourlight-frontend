@@ -14,6 +14,7 @@ import { Post } from 'src/app/services/postInterface/post';
 })
 export class CreatePostComponent implements OnInit {
 
+  loading = false;
   locations: {}[] = [];
   location: {} = {};
   post: Post;
@@ -23,6 +24,8 @@ export class CreatePostComponent implements OnInit {
   marker = { position: {}}
 
   @ViewChild('mapInput') mapInput!: ElementRef;
+  @ViewChild('minimumDays') minimumDays: ElementRef;
+  @ViewChild('maximumDays') maximumDays: ElementRef;
   @ViewChild('closeModal') closeModal: ElementRef;
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
   @ViewChild(GoogleMap) map!: GoogleMap;
@@ -58,9 +61,13 @@ export class CreatePostComponent implements OnInit {
 
   addLocation() {
     if (this.mapInput.nativeElement.value) {
-      this.locations.push(this.location)
+      this.loading = true;
+      this.locations.push(this.location);
       this.closeModal.nativeElement.click();
       this.resetForm();
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000)
     } else {
       this.toaster.error(`Please complete location details`)
     }
@@ -74,7 +81,9 @@ export class CreatePostComponent implements OnInit {
       userphoto: user.photoURL,
       useruid: user.uid,
       likes: [],
-      locations: this.locations
+      locations: this.locations,
+      minimumDays: this.minimumDays.nativeElement.value,
+      maximumDays: this.maximumDays.nativeElement.value
     }
 
     if (this.locations.length) {
@@ -139,6 +148,11 @@ export class CreatePostComponent implements OnInit {
     )
   }
 
+  resetDays() {
+    this.minimumDays.nativeElement.value = "";
+    this.maximumDays.nativeElement.value = "";
+  }
+
   resetPost() {
     this.post = {
       username: "",
@@ -146,6 +160,12 @@ export class CreatePostComponent implements OnInit {
       useruid: "",
       likes: [],
       locations: []
+    }
+  }
+
+  getLoaded(event: any) {
+    if (event) {
+      this.loading = false;
     }
   }
 }

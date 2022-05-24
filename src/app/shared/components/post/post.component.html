@@ -13,7 +13,7 @@
   <p-carousel
     [value]="post.locations"
     [numVisible]="2"
-    [numScroll]="3"
+    [numScroll]="2"
     [circular]="true"
     class="carousel"
     [loading]="loading"
@@ -29,16 +29,25 @@
     </ng-template>
   </p-carousel>
   <div class="row ps-2 pe-2">
-    <div class="col-12">
-      <span>
-        Tour duration: 1 - 2 days
+    <div class="col-12">Tour duration: <b>
+      <span *ngIf="post.maximumDays > post.minimumDays">
+        {{ post.minimumDays }} - {{ post.maximumDays }} days
       </span>
+      <span *ngIf="post.maximumDays == 1 && post.maximumDays == 1">
+        {{ post.maximumDays }} day
+      </span>
+      <span *ngIf="post.maximumDays == post.minimumDays && post.minimumDays != 1">
+        {{ post.minimumDays }} days
+      </span></b>
     </div>
   </div>
   <div class="row ps-2 pe-2">
     <div class="col-6">
-      <span>
+      <span *ngIf="post.likes.length">
         Likes {{ post.likes.length }}
+      </span>
+      <span *ngIf="post.likes.length == 0">
+        No likes.
       </span>
     </div>
     <div class="col-6 position-relative">

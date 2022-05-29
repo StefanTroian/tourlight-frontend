@@ -1,6 +1,36 @@
 #profile-image {
-  height: 10em;
-  width: 10em;
+  height: 10rem;
+  width: 10rem;
   border-radius: 50%;
   box-shadow: 6px 6px 12px #9d9d9d, -6px -6px 12px #ffffff !important;
+}
+
+::ng-deep {
+  .p-tabview, .p-tabview .p-tabview-panels, .p-tabview, .p-tabview .p-tabview-nav, .p-element {
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    background-color: #ebebeb !important;
+  }
+}
+
+::ng-deep .p-tabview-panels {
+  padding: 0 !important;
+}
+
+::ng-deep .p-tabelement.p-element .ng-star-inserted {
+  padding-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+::ng-deep .p-tabview-nav .p-highlight * {
+  background-color: #bebebe !important;
+}
+
+::ng-deep .p-tabview-title {
+  color: #21252f;
+  font-weight: bold;
+}
+
+::ng-deep .p-tabview-ink-bar {
+  background-color: #21252f !important;
 }

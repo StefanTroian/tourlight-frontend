@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -23,7 +24,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     CommonModule,
     SharedModule,
     GooglePlaceModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    TabViewModule
   ]
 })
 export class PagesModule { }

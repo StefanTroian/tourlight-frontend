@@ -1,0 +1,13 @@
+::ng-deep #topLocations .map-container {
+    height: 15vh;
+}
+
+::ng-deep #topLocations .p-card {
+    .p-card-footer, .p-card-content {
+        display: none;
+    }
+}
+
+#topLocations {
+    margin-bottom: 1.5rem;
+}

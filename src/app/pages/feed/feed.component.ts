@@ -12,6 +12,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
   
   loading = true;
   posts:any [] = [];
+  topLocations:any [] = [];
   endLimit: number = 3;
   maxLimit: number;
 
@@ -23,6 +24,17 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.posts = [];
+
+    this.feedService.getTopLocations().subscribe({
+      next: (response: any) => {
+        if (response) {
+          this.topLocations = response;
+        }
+      },
+      error: (err: any) => {
+        this.toaster.error(err.message)
+      }
+    });
 
     this.feedService.getFeedLength().subscribe({
       next: (response: any) => {
@@ -58,8 +70,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
         if (response) {
           this.posts = this.posts.concat(response);
         }
-
-        console.log(response)
 
         let clear = setInterval(() => {
           let target = document.querySelector(`#target${this.endLimit}`);

@@ -287,12 +287,12 @@ export class LocationComponent implements OnInit, AfterViewInit{
     if (this.location.rating)
       this.floorRating = Math.floor(this.location.rating);
   
-    this.mapOptions.center.lat = this.location.lat;
-    this.mapOptions.center.lng = this.location.lng;
+    this.mapOptions.center.lat = parseFloat(this.location.lat);
+    this.mapOptions.center.lng = parseFloat(this.location.lng);
     this.marker = {
       position: {
-        lat: this.location.lat,
-        lng: this.location.lng
+        lat: parseFloat(this.location.lat),
+        lng: parseFloat(this.location.lng)
       }
     }
   }

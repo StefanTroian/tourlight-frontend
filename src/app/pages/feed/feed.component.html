@@ -5,14 +5,32 @@
   >
   </app-post>
 </div> -->
-
-<ng-container *ngFor="let post of posts; let i = index" class="mt-5">
-  <app-post 
-    id="target{{i + 1}}"
-    [post]="post"
-  >
-  </app-post>
-</ng-container>
-<div>
-  <span [loading]="loading"></span>
+<div class="row">
+  <div class="col-9">
+    <ng-container *ngFor="let post of posts; let i = index" class="mt-5">
+      <app-post 
+        id="target{{i + 1}}"
+        [post]="post"
+      >
+      </app-post>
+    </ng-container>
+    <div>
+      <span [loading]="loading"></span>
+    </div>
+  </div> 
+  <div class="col-3 mt-3" >
+    <div style="position: sticky; top: 1rem;">
+      <h4>Top locations</h4>
+      <div id="topLocations" *ngFor="let location of topLocations">
+        <div>
+          <app-location
+            [location]="location"
+          >
+          </app-location>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container border position-relative" style="height: 90vh">
   <div class="row">
-    <div class="col-4 border" style="text-align: center;">
+    <div class="col-3 border" style="text-align: center;">
       <div class="mt-5 mb-4">
         <img
           id="profile-image"
@@ -21,6 +21,33 @@
         </button>
       </div>
     </div>
-    <div class="col-8 border">Posts</div>
+    <div class="col-9 border p-0">
+      <div class="card">
+        <p-tabView>
+          <p-tabPanel header="My posts">
+            <div style="height: 85vh; overflow-y: scroll !important;">
+              <ng-container *ngFor="let post of my_posts; let i = index" class="mt-5">
+                <app-post 
+                  id="target{{i + 1}}"
+                  [post]="post"
+                >
+                </app-post>
+              </ng-container>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel header="Liked posts">
+            <div style="height: 85vh; overflow-y: scroll !important;">
+              <ng-container *ngFor="let post of liked_posts; let i = index" class="mt-5">
+                <app-post 
+                  id="target{{i + 1}}"
+                  [post]="post"
+                >
+                </app-post>
+              </ng-container>
+          </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
   </div>
 </div>

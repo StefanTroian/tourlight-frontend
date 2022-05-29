@@ -87,22 +87,57 @@ export class CreatePostComponent implements OnInit {
     }
 
     if (this.locations.length) {
-      this.feedService.createPost(this.post).subscribe({
-        next: (response: any) => {
-          if (response) {
-            this.toaster.success(response.message)
+      if (this.minimumDays.nativeElement.value && this.maximumDays.nativeElement.value) {
+        if (
+          this.minimumDays.nativeElement.value >= 1 && this.minimumDays.nativeElement.value <= 10 &&
+          this.maximumDays.nativeElement.value >= 1 && this.maximumDays.nativeElement.value <= 10
+        ) {
+          if (this.minimumDays.nativeElement.value <= this.maximumDays.nativeElement.value) {
+            this.feedService.createPost(this.post).subscribe({
+              next: (response: any) => {
+                if (response) {
+                  this.toaster.success(response.message)
+                }
+              },
+              error: (err: any) => {
+                this.toaster.error(err.message)
+              }
+            })
+        
+            this.router.navigate(['feed']).then(() => {
+              window.location.reload();
+            });
+      
+            this.locations.forEach((location: any) => {
+              this.feedService.createLocation(location).subscribe({
+                next: (response: any) => {
+                  if (response) {
+                    this.toaster.success(response.message)
+                  }
+                },
+                error: (err: any) => {
+                  this.toaster.error(err.message)
+                }
+              })
+            })
+          } else {
+            this.toaster.error(`Minimum days should be lower than maximum days.`)
           }
-        },
-        error: (err: any) => {
-          this.toaster.error(err.message)
+        } else {
+          this.toaster.error(`Minimum and maximum days should be numbers between 1 and 10.`)
         }
-      })
-  
-      this.router.navigate(['feed']).then(() => {
-        window.location.reload();
-      });
+      } else if (this.minimumDays.nativeElement.value == "" && this.maximumDays.nativeElement) {
+        this.toaster.error(`Please add minimum days for tour duration.`)
+      } else if (this.maximumDays.nativeElement.value == "" && this.minimumDays.nativeElement.value) {
+        this.toaster.error(`Please add maximum days for tour duration.`)
+      } else {
+        console.log(this.minimumDays.nativeElement.value, this.maximumDays.nativeElement.value)
+        this.toaster.error(`Please add tour duration.`)
+      }
+      
+
     } else {
-      this.toaster.error(`Please add a location`)
+      this.toaster.error(`Please add a location.`)
     }
   }
 

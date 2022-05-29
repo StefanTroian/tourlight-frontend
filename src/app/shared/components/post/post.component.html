@@ -43,11 +43,17 @@
   </div>
   <div class="row ps-2 pe-2">
     <div class="col-6">
-      <span *ngIf="post.likes.length">
-        Likes {{ post.likes.length }}
+      <span>
+        <i class="{{ heart }}" style="font-size: 22px;" (click)="toggleHeart()"></i>
+        <span *ngIf="likes.length == 1">
+          {{ likes.length }} appreciation
+        </span>
+        <span *ngIf="likes.length > 1">
+          {{ likes.length }} appreciations
+        </span>
       </span>
-      <span *ngIf="post.likes.length == 0">
-        No likes.
+      <span *ngIf="likes.length == 0">
+        No appreciation
       </span>
     </div>
     <div class="col-6 position-relative">

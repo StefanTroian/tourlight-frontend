@@ -23,4 +23,8 @@ export class UserService {
   createUser(userObject: any): Observable<any> {
     return this.http.post<any>(`http://localhost:8081/api/tourlight/users`, userObject).pipe(map((res: HttpResponse<Text>) => res));
   }
+
+  updateUser(id: any, userObject: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8081/api/tourlight/users/${id}`, userObject).pipe(map((res: HttpResponse<Text>) => res));
+  }
 }

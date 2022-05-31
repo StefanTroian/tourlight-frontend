@@ -1,10 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-
+    <div class="col-6 icons">
+      <div *ngFor="let i of [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" class="icon-pack">
+        <div *ngFor="let i of [0,0]">
+          <i class="fas fa-archway"></i>
+          <i class="fas fa-bed"></i>
+          <i class="fas fa-bus"></i>
+          <i class="fas fa-cocktail"></i>
+          <i class="fas fa-glass-martini-alt"></i>
+          <i class="fas fa-hot-tub"></i>
+          <i class="fas fa-hiking"></i>
+          <i class="fas fa-hotel"></i>
+          <i class="far fa-compass"></i>
+          <i class="fas fa-map-marked-alt"></i>
+          <i class="fas fa-route"></i>
+          <i class="fas fa-plane"></i>
+          <i class="fas fa-monument"></i>
+          <i class="fas fa-suitcase-rolling"></i>
+          <i class="fas fa-university"></i>
+          <i class="fas fa-swimmer"></i>
+          <i class="fas fa-umbrella-beach"></i>
+          <i class="fas fa-tree"></i>
+          <i class="fas fa-wine-glass-alt"></i>
+          <i class="fas fa-map-signs"></i>
+        </div>
+      </div>
     </div>
-    <div class="col-6">
-      <h3>Register</h3>
+    <div class="col-6 p-5" style="margin-top: 10vh;">
+      <h2>Register</h2>
       <div>
         <input
           type="text"
@@ -49,30 +72,33 @@
           required
         />
       </div>
-      <div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="register()"
-        >
-          Register
-        </button>
+      <div class="row">
+        <div class="col-6 pe-0">
+          <button
+            type="button"
+            class="btn btn-dark w-100"
+            (click)="register()"
+          >
+            Register
+          </button>
+        </div>
+      
+        <div class="col-6 ps-0">
+          <button
+            type="button"
+            class="btn btn-danger w-100"
+            (click)="googleAuth()"
+          >
+            <i class="fab fa-google-plus-g"></i>
+            Continue with Google
+          </button>
+        </div>
       </div>
-    
-      <div>
-        <button
-          type="button"
-          class="btn btn-danger"
-          (click)="googleAuth()"
-        >
-          <i class="fab fa-google-plus-g"></i>
-          Continue with Google
-        </button>
-      </div>
+      
       <div>
         <span
           >Already have an account?
-          <a (click)="goToLogin()">Log In</a></span
+          <a (click)="goToLogin()"><b>Log In</b></a></span
         >
       </div>
     </div>

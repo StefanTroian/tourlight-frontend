@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   user!: any;
   my_posts = [];
   liked_posts = [];
+  loading = false;
 
   constructor(
     public authService: AuthService,
@@ -23,14 +24,18 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.getUserByUID();
     this.getPostsByUID();
-    this.getPostsByLikes(); 
+    this.getPostsByLikes();
+    setTimeout(() => {
+      this.loading = false;
+    },3000);
   }
 
   getUserByUID() {
     let user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.uid);
+    
     this.userService.getUserByUID(user.uid).subscribe({
       next: (response: any) => {
         if (response) {
@@ -47,7 +52,9 @@ export class ProfileComponent implements OnInit {
     this.profileService.getPostsByUID(JSON.parse(localStorage.getItem('user')).uid).subscribe({
       next: (response) => {
         this.my_posts = response;
-        console.log(response)
+        setTimeout(() => {
+          this.loading = false;
+        },500)
       },
       error: (err: any) => {
         this.toaster.error(err.message)
@@ -59,7 +66,9 @@ export class ProfileComponent implements OnInit {
     this.profileService.getPostsByLikes(JSON.parse(localStorage.getItem('user')).uid).subscribe({
       next: (response) => {
         this.liked_posts = response;
-        console.log(response)
+        setTimeout(() => {
+          this.loading = false;
+        },500)
       },
       error: (err: any) => {
         this.toaster.error(err.message)

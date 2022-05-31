@@ -48,15 +48,23 @@ export class AuthService {
       })
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, photoURL?: string, displayName?: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
         // this.sendVerificationMail();
-        this.setUserData(res.user);
-        this.router.navigate(['feed']);
-        this.userService.createUser(res.user).subscribe({
+        let u = JSON.parse(JSON.stringify(res.user));
+        u.photoURL = photoURL;
+
+        if (displayName) {
+          u.displayName = displayName;
+        }
+
+        this.setUserData(u);
+        
+        this.userService.createUser(u).subscribe({
           next: (response: any) => {
             if (response) {
+              this.router.navigate(['feed']);
               this.toaster.success(response.message);
             }
           },

@@ -1,51 +1,57 @@
 <div class="container">
-  <h3>Login</h3>
-  <div>
-    <input
-      type="text"
-      class="formControl"
-      placeholder="Email"
-      #userEmail
-      required
-    />
-  </div>
-  <div>
-    <input
-      type="password"
-      class="formControl"
-      placeholder="Password"
-      #userPassword
-      required
-    />
-  </div>
+  <div class="row">
+    <div class="col-6">
 
-  <div>
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="login()"
-    >
-      Log in
-    </button>
-  </div>
+    </div>
+    <div class="col-6">
+      <h3>Login</h3>
+      <div>
+        <input
+          type="text"
+          class="formControl"
+          placeholder="Email"
+          #userEmail
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          class="formControl"
+          placeholder="Password"
+          #userPassword
+          required
+        />
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="login()"
+        >
+          Log in
+        </button>
+      </div>
 
-  <div>
-    <span
-      type="button"
-      class="btn btn-danger"
-      (click)="googleAuth()"
-    >
-      <i class="fab fa-google-plus-g"></i>
-      Log in with Google
-    </span>
-  </div>
-  <div>
-    <span (click)="goToForgotPassword()">Forgot Password?</span>
-  </div>
-  <div>
-    <span
-      >Don't have an account?
-      <a (click)="goToRegister()"> Register </a>
-    </span>
+      <div>
+        <span
+          type="button"
+          class="btn btn-danger"
+          (click)="googleAuth()"
+        >
+          <i class="fab fa-google-plus-g"></i>
+          Log in with Google
+        </span>
+      </div>
+      <div>
+        <span (click)="goToForgotPassword()">Forgot Password?</span>
+      </div>
+      <div>
+        <span
+          >Don't have an account?
+          <a (click)="goToRegister()"> Register </a>
+        </span>
+      </div>
+    </div>
   </div>
 </div>

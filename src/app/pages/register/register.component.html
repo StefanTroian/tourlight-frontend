@@ -1,47 +1,80 @@
 <div class="container">
-  <h3>Register</h3>
-  <div>
-    <input
-      type="email"
-      class="formControl"
-      placeholder="Email Address"
-      #userEmail
-      required
-    />
-  </div>
-  <div>
-    <input
-      type="password"
-      class="formControl"
-      placeholder="Password"
-      #userPassword
-      required
-    />
-  </div>
-  <div>
-    <button
-      type="button"
-      class="btn btn-primary"
-      (click)="register()"
-    >
-      Register
-    </button>
-  </div>
+  <div class="row">
+    <div class="col-6">
 
-  <div>
-    <button
-      type="button"
-      class="btn btn-danger"
-      (click)="googleAuth()"
-    >
-      <i class="fab fa-google-plus-g"></i>
-      Continue with Google
-    </button>
-  </div>
-  <div>
-    <span
-      >Already have an account?
-      <a (click)="goToLogin()">Log In</a></span
-    >
+    </div>
+    <div class="col-6">
+      <h3>Register</h3>
+      <div>
+        <input
+          type="text"
+          class="formControl"
+          placeholder="Full Name"
+          #displayName
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="email"
+          class="formControl"
+          placeholder="Email Address"
+          #userEmail
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          class="formControl"
+          placeholder="Password"
+          #userPassword
+          required
+        />
+      </div>
+      <div>
+        <input
+          type="password"
+          class="formControl"
+          placeholder="Confirm password"
+          #userConfirmPassword
+          required
+        />
+      </div>
+      <div>
+        <input 
+          id="inputFileToLoad"
+          type="file"
+          (change)="onUploadChange($event)"
+          required
+        />
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="register()"
+        >
+          Register
+        </button>
+      </div>
+    
+      <div>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="googleAuth()"
+        >
+          <i class="fab fa-google-plus-g"></i>
+          Continue with Google
+        </button>
+      </div>
+      <div>
+        <span
+          >Already have an account?
+          <a (click)="goToLogin()">Log In</a></span
+        >
+      </div>
+    </div>
   </div>
 </div>

@@ -81,7 +81,6 @@ export class PostComponent implements OnInit {
         
         this.feedService.updatePost(this.post.id, { likes: this.likes }).subscribe({
           next: (response) => {
-            console.log(response)
             this.heart = 'far fa-heart';
           },
           error: (err: any) => {
@@ -102,7 +101,6 @@ export class PostComponent implements OnInit {
         
         this.userService.updateUser(JSON.parse(localStorage.getItem('user')).uid, { liked_posts: this.liked_posts }).subscribe({
           next: (response) => {
-            console.log(response)
           },
           error: (err: any) => {
             this.toaster.error(err.message)
@@ -119,7 +117,6 @@ export class PostComponent implements OnInit {
       this.heart = 'fas fa-heart';
       this.feedService.updatePost(this.post.id, { likes: this.likes }).subscribe({
         next: (response) => {
-          console.log(response)
           this.heart = 'fas fa-heart';
         },
         error: (err: any) => {
@@ -133,7 +130,6 @@ export class PostComponent implements OnInit {
 
       this.userService.updateUser(JSON.parse(localStorage.getItem('user')).uid, { liked_posts: this.liked_posts }).subscribe({
         next: (response) => {
-          console.log(response)
           // get liked posts from user
           this.userService.getUserByUID(JSON.parse(localStorage.getItem('user')).uid).subscribe({
             next: (response) => {

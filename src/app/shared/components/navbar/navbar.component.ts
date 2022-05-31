@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { User } from 'src/app/services/userInterface/user';
+import { UserService } from 'src/app/services/userService/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +14,24 @@ export class NavbarComponent implements OnInit {
 
   user!: User;
   constructor(
-    public router: Router
+    public router: Router,
+    public userService: UserService,
+    public toasterService: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!);
+
+    this.userService.getUserByUID(this.user.uid).subscribe({
+      next: (response) => {
+        if (response) {
+          this.user = response;
+        }
+      },
+      error: (err: any) => {
+        this.toasterService.error(err.message);
+      }
+    })
   }
 
   goToFeed() {

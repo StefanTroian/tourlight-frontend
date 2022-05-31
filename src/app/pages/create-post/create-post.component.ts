@@ -6,6 +6,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
 import { FeedService } from 'src/app/services/feedService/feed.service';
 import { Post } from 'src/app/services/postInterface/post';
+import { UserService } from 'src/app/services/userService/user.service';
 
 @Component({
   selector: 'app-create-post',
@@ -22,6 +23,7 @@ export class CreatePostComponent implements OnInit {
   longitude = '';
   latitude = '';
   marker = { position: {}}
+  user;
 
   @ViewChild('mapInput') mapInput!: ElementRef;
   @ViewChild('minimumDays') minimumDays: ElementRef;
@@ -49,10 +51,21 @@ export class CreatePostComponent implements OnInit {
   constructor(
     public feedService: FeedService,
     public toaster: ToastrService,
+    public userService: UserService,
     public router: Router
   ) { }
 
   ngOnInit(): void {
+    this.userService.getUserByUID(JSON.parse(localStorage.getItem('user')).uid).subscribe({
+      next: (response) => {
+        if (response) {
+          this.user = response;
+        }
+      },
+      error: (err: any) => {
+        this.toaster.error(err.message);
+      }
+    })
   }
   
   ngAfterViewInit(): void {
@@ -74,12 +87,11 @@ export class CreatePostComponent implements OnInit {
   }
 
   addPost() {
-    let user = JSON.parse(localStorage.getItem('user'));
 
     this.post = {
-      username: user.displayName,
-      userphoto: user.photoURL,
-      useruid: user.uid,
+      username: this.user.displayName,
+      userphoto: this.user.photoURL,
+      useruid: this.user.uid,
       likes: [],
       locations: this.locations,
       minimumDays: this.minimumDays.nativeElement.value,
@@ -131,7 +143,6 @@ export class CreatePostComponent implements OnInit {
       } else if (this.maximumDays.nativeElement.value == "" && this.minimumDays.nativeElement.value) {
         this.toaster.error(`Please add maximum days for tour duration.`)
       } else {
-        console.log(this.minimumDays.nativeElement.value, this.maximumDays.nativeElement.value)
         this.toaster.error(`Please add tour duration.`)
       }
       
@@ -142,7 +153,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   public handleAddressChange(address: Address) {
-    console.log(address)
     
     this.location = {
       'location_name': address.name,

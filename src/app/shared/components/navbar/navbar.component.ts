@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/services/authService/auth.service';
-import { User } from 'src/app/services/userInterface/user';
-import { UserService } from 'src/app/services/userService/user.service';
+import { AuthService } from 'src/app/shared/core/services/authService/auth.service';
+import { User } from 'src/app/shared/core/interfaces/userInterface/user';
+import { UserService } from 'src/app/shared/core/services/userService/user.service';
 
 @Component({
   selector: 'app-navbar',

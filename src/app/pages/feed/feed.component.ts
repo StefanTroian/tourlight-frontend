@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { FeedService } from 'src/app/services/feedService/feed.service';
-import { InfiniteScrollService } from 'src/app/services/infiniteScrollingService/infinite-scroll.service';
+import { FeedService } from 'src/app/shared/core/services/feedService/feed.service';
+import { InfiniteScrollService } from 'src/app/shared/core/services/infiniteScrollingService/infinite-scroll.service';
 
 @Component({
   selector: 'app-feed',

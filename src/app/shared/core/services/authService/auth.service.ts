@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import { ToastrService } from 'ngx-toastr';
-import { User } from '../userInterface/user';
+import { User } from '../../interfaces/userInterface/user';
 import { UserService } from '../userService/user.service';
 
 @Injectable({

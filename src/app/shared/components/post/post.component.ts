@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { FeedService } from 'src/app/services/feedService/feed.service';
-import { UserService } from 'src/app/services/userService/user.service';
+import { FeedService } from 'src/app/shared/core/services/feedService/feed.service';
+import { UserService } from 'src/app/shared/core/services/userService/user.service';
 
 @Component({
   selector: 'app-post',

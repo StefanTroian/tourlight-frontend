@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ToastrService } from 'ngx-toastr';
-import { FeedService } from 'src/app/services/feedService/feed.service';
-import { Post } from 'src/app/services/postInterface/post';
-import { UserService } from 'src/app/services/userService/user.service';
+import { FeedService } from 'src/app/shared/core/services/feedService/feed.service';
+import { Post } from 'src/app/shared/core/interfaces/postInterface/post';
+import { UserService } from 'src/app/shared/core/services/userService/user.service';
 
 @Component({
   selector: 'app-create-post',
